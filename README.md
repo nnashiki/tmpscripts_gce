@@ -8,7 +8,7 @@
 - deploy_src/requirements.txt に必要なパッケージ名を追加する
 - startup.pyのmain関数を実装する
 - service_account、project_id、bucket部分を置き換えて以下のshellを実行していく
-    - `gcloud beta compute`でGCEインスタンスが立ち上がる。(経過はstackdriverで"")
+    - `gcloud beta compute`でGCEインスタンスが立ち上がる。(ログはstackdriverで"startup"と検索して確認する)
 
 ``` {bash}
 # tmpscripts_gce直下で実行しましょう
