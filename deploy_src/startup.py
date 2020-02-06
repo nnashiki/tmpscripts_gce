@@ -37,7 +37,7 @@ def main(arg1: str, arg2: str):
     logger.debug('arg2: ' + arg2)
 
     df = pd.read_csv('./pokemon.csv', sep=',')
-    logger.debug(df)
+    logger.debug(df.head(3))
 
 
 if __name__ == '__main__':

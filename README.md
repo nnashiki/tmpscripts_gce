@@ -8,6 +8,7 @@
 - deploy_src/requirements.txt に必要なパッケージ名を追加する
 - startup.pyのmain関数を実装する
 - service_account、project_id、bucket部分を置き換えて以下のshellを実行していく
+    - `gcloud beta compute`でGCEインスタンスが立ち上がる。(経過はstackdriverで"")
 
 ``` {bash}
 # tmpscripts_gce直下で実行しましょう
@@ -26,7 +27,7 @@ machine_type=n1-standard-1
 boot_disk_size=10G
 
 # deploy_srcをbucketのtopに配置する
-gsutil cp -r ./deploy_src gs://${BUCKET}/deploy_src
+gsutil cp -r ./deploy_src/ gs://$bucket
 
 # GCEでスクリプトを実行する
 instance_name=vm-${arg1}-${arg2}
