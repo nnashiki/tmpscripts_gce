@@ -1,8 +1,9 @@
 import argparse
 import logging
 import sys
-import pandas as pd
 from logging import getLogger
+
+import pandas as pd
 
 LOG_LEVEL = {
     'DEBUG': logging.DEBUG,
@@ -28,6 +29,7 @@ def set_verbose(verbose: str):
     handler.setLevel(LOG_LEVEL[verbose])
     handler.setFormatter(logging.Formatter('%(message)s'))
     root_logger.addHandler(handler)
+
 
 # メインとなる処理を書く
 def main(arg1: str, arg2: str):
