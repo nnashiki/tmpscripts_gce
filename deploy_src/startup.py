@@ -1,6 +1,7 @@
 import argparse
 import logging
 import sys
+import pandas as pd
 from logging import getLogger
 
 LOG_LEVEL = {
@@ -28,10 +29,13 @@ def set_verbose(verbose: str):
     handler.setFormatter(logging.Formatter('%(message)s'))
     root_logger.addHandler(handler)
 
-
+# メインとなる処理を書く
 def main(arg1: str, arg2: str):
     logger.debug('arg1: ' + arg1)
     logger.debug('arg2: ' + arg2)
+
+    df = pd.read_csv('./pokemon.csv', sep=',')
+    logger.debug(df)
 
 
 if __name__ == '__main__':

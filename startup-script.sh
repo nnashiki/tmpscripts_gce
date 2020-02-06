@@ -14,9 +14,6 @@ sudo apt update
 sudo apt upgrade
 sudo apt install -y python3-pip
 
-# ex.
-pip3 install google-cloud-bigquery
-
 # カスタムメタデータを取得
 readonly ARG1=`curl -sS --fail "http://metadata.google.internal/computeMetadata/v1/instance/attributes/arg1" -H "Metadata-Flavor: Google"`
 declare -p ARG1
@@ -25,10 +22,15 @@ declare -p ARG2
 readonly BUCKET=`curl -sS --fail "http://metadata.google.internal/computeMetadata/v1/instance/attributes/bucket" -H "Metadata-Flavor: Google"`
 declare -p BUCKET
 
-# ソースをdeployしてPython scriptを実行
-gsutil cp -r gs://${BUCKET}/src .
-cd src/
-python3 hoge.py ${ARG1} ${ARG2}
+# ソースをdeployする
+gsutil cp -r gs://${BUCKET}/deploy_src .
+
+# Pythonパッケージをinstallする
+pip3 install -r deploy_src/requirements.txt
+
+# Python scriptを実行する
+cd deploy_src/
+python3 startup.py ${ARG1} ${ARG2}
 
 # GCEインスタンスを終了する
 echo "Shutdown itself"
